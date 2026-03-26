@@ -1,13 +1,8 @@
 score = {"whaling_ship" : 3,
          "knarr" : 5,
          "longship" : 8,
-         "shed" : 5,
-         "house" : 3,
-         "longhouse" : 2,
-         "knarr_emi" : 2,
-         "longship_emi" : 2,
          "sheep" : 2,
-         "cattle" : 2,
+         "cattle" : 3,
          }
 
 exploration = {"baffin" : {"score" : 12, "start" : -24},
@@ -19,6 +14,12 @@ exploration = {"baffin" : {"score" : 12, "start" : -24},
                "newfoundland" : {"score" : 38, "start" : -40},
                "shetland" : {"score" : 6, "start" : -24},
                }
+
+house = {"shed" : {"score" : 8, "start" : -6} ,
+         "house" : {"score" : 10, "start" : -9},
+         "longhouse" : {"score" : 17, "start" : -15}
+         }
+
 
 emigration = 13
 pregnant = 1
