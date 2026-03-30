@@ -1,50 +1,16 @@
 import sys
-from PyQt6.QtCore import QCoreApplication
-from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QGridLayout
+from PyQt6 import QtWidgets, uic
 
 
-# window design
-class MainWindow(QWidget):
+class MyWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("AFFO Score")
-
-        shipbox = QGridLayout(self) # layout
-
-        whale_ship_bt = QPushButton("add") # button
-        knarr_ship_bt = QPushButton("add")
-        knarr_emi_bt  = QPushButton("add")
-        long_ship_bt  = QPushButton("add")
-        long_emi_bt   = QPushButton("add")
-
-        whale_ship_lb = QLabel("whale ship")  # label
-        knarr_ship_lb = QLabel("knarr ship")
-        knarr_emi_lb  = QLabel("knarr emigration")
-        long_ship_lb  = QLabel("longship")
-        long_emi_lb   = QLabel("longship emigration")
-
-        shipbox.addWidget(whale_ship_bt, 1, 0)# add but to the layout
-        shipbox.addWidget(whale_ship_lb, 0, 0)
-
-        shipbox.addWidget(knarr_ship_bt, 1, 1)
-        shipbox.addWidget(knarr_ship_lb, 0, 1)
-
-        shipbox.addWidget(knarr_emi_bt, 1, 2)
-        shipbox.addWidget(knarr_emi_lb, 0, 2)
+        uic.loadUi("C:/Users/Nuttapon/OneDrive/Desktop/G@nn3/Not a game/QT/AFFO_main_window.ui", self)
 
 
-        shipbox.addWidget(long_ship_bt, 1, 3)
-        shipbox.addWidget(long_ship_lb, 0, 3)
 
-
-        shipbox.addWidget(long_emi_bt, 1, 4)
-        shipbox.addWidget(long_emi_lb, 0, 4)
-
-# program running
-app = QCoreApplication.instance()
-if app is None:
-    app = QApplication([])
-
-window = MainWindow()
-window.show()
-app.exec()
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    window = MyWindow()
+    window.show()
+    sys.exit(app.exec())
