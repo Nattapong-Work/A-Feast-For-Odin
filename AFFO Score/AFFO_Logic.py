@@ -133,7 +133,3 @@ def main():
     )
 
     print("Total score : ", total_score)
-
-
-if __name__ == "__main__":
-    main()
