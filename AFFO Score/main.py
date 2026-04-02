@@ -1,10 +1,10 @@
 import sys
 from PyQt6 import QtWidgets
 from AFFO_main_ui import MyWindow
-import AFFO_Logic
+import AFFO_Logic as logic
 
 
-class AppController(MyWindow):  # สืบทอดหน้าจอมา แล้วเติมสมองเข้าไป
+class AppController(MyWindow):
     def __init__(self):
         super().__init__()
 
