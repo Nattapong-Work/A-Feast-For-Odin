@@ -1,21 +1,37 @@
 import sys
 from PyQt6 import QtWidgets
 from AFFO_main_ui import MyWindow
-from AFFO_Logic import FinalScore
-
+from AFFO_Logic import *
 
 class AppController(MyWindow):
     def __init__(self):
         super().__init__()
 
-
+        # ปุ่ม done และ reset
         self.pb_done.clicked.connect(self.get_final_score)
         self.pb_reset.clicked.connect(self.reset)
 
+        # เช็คบ็อกชื่อเกาะ
+        self.chb_shet.stateChanged.connect(self.add_island)
+        self.chb_faroe.stateChanged.connect(self.add_island)
+        self.chb_ice.stateChanged.connect(self.add_island)
+        self.chb_green.stateChanged.connect(self.add_island)
+        self.chb_bear.stateChanged.connect(self.add_island)
+        self.chb_baffin.stateChanged.connect(self.add_island)
+        self.chb_labrador.stateChanged.connect(self.add_island)
+        self.chb_newf.stateChanged.connect(self.add_island)
 
-    def get_island(self, state, points):
-        pass
+        self.chb_english_cr.stateChanged.connect(self.add_island)
 
+
+
+    def add_island(self, state):
+        if state == 2:
+            ise = self.sender().text()
+            add_point(ise)
+        else:
+            ise = self.sender().text()
+            sub_point(ise)
 
     def get_final_score(self):
         # โค้ดส่วนที่รวมรวมค่าจาก สปินบ็อกอื่นๆ มา
@@ -43,7 +59,7 @@ class AppController(MyWindow):
         }
 
         # เรียกใช้ฟังก์ชั่นที่อยู่ในลอจิก พร้อมค่าพรารามิเตอร์ ที่เปนค่าที่ต้องคำนวณเช่น goo(ship = 20, house = 30,...) return กลับมาในตัวแปร
-        total_score = FinalScore.get_final_score(
+        total_score = get_final_score(
             data["whale"],
             data["knarr"],
             data["long ship"],
@@ -65,8 +81,15 @@ class AppController(MyWindow):
             data["exploration minus"],
             data["main village minus"]
         )
+
+
         # ใช้ self.lb_total_scr.set text เปนตัวแปรที่โค้แถวบนคนืนค่ามา
         self.lb_total_scr.setText(str(total_score))
+
+        self.lb_ship_scr.setText(str(ship))
+        self.lb_explo_scr.setText(str(island))
+        self.lb_build_scr.setText(str(building))
+        self.lb_ani_scr.setText(str(animal))
 
     def reset(self):
         self.spb_whale.setValue(0)
@@ -90,7 +113,19 @@ class AppController(MyWindow):
         self.spb_mi_expl.setValue(0)
         self.spb_vill_mi.setValue(0),
 
+        self.chb_shet.setChecked(False)
+        self.chb_faroe.setChecked(False)
+        self.chb_ice.setChecked(False)
+        self.chb_green.setChecked(False)
+        self.chb_bear.setChecked(False)
+        self.chb_baffin.setChecked(False)
+        self.chb_labrador.setChecked(False)
+        self.chb_newf.setChecked(False)
 
+ship = 0
+island = 4
+building = 7
+animal = 12
 
 
 if __name__ == "__main__":
