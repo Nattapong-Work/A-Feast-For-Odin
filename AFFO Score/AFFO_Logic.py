@@ -79,6 +79,7 @@ def add_point(ise):
         global checkbox_point
         checkbox_point += data[ise]
         print(checkbox_point)
+        return checkbox_point
 
 def sub_point(ise):
     if ise in data:

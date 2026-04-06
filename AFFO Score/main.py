@@ -28,10 +28,12 @@ class AppController(MyWindow):
     def add_island(self, state):
         if state == 2:
             ise = self.sender().text()
-            add_point(ise)
+            global checkbox_point
+            checkbox_point = add_point(ise)
+
         else:
             ise = self.sender().text()
-            sub_point(ise)
+            checkbox_point = sub_point(ise)
 
     def get_final_score(self):
         # โค้ดส่วนที่รวมรวมค่าจาก สปินบ็อกอื่นๆ มา
@@ -82,6 +84,25 @@ class AppController(MyWindow):
             data["main village minus"]
         )
 
+        ship = ship_score(self.spb_whale.value(),
+                          self.spb_knarr.value(),
+                          self.spb_long.value(),
+                          self.spb_knarr_emi.value(),
+                          self.spb_long_emi.value())
+
+        island = checkbox_point
+
+        building = building_score(self.spb_shed_num.value(),
+                                  self.spb_hou_num.value(),
+                                  self.spb_lng_num.value())
+
+        animal = animal_score(self.spb_shp.value(),
+                              self.spb_preg_shp.value(),
+                              self.spb_cattle.value(),
+                              self.spb_preg_cattle.value())
+
+
+
 
         # ใช้ self.lb_total_scr.set text เปนตัวแปรที่โค้แถวบนคนืนค่ามา
         self.lb_total_scr.setText(str(total_score))
@@ -122,10 +143,7 @@ class AppController(MyWindow):
         self.chb_labrador.setChecked(False)
         self.chb_newf.setChecked(False)
 
-ship = 0
-island = 4
-building = 7
-animal = 12
+checkbox_point = 0
 
 
 if __name__ == "__main__":
